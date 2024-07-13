@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facturier</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <header>
+      <h1>FACTURIER</h1>
+      <h2>Générateur de factures et de devis</h2>
+    </header>
+
+    <div id="form-container">
+      <form id="form">
+        <section class="section-type-document">
+          <h3>Type de document</h3>
+          <select id="type">
+            <option value="invoice">Facture</option>
+            <option value="estimate">Devis</option>
+          </select>
+        </section>
+        <hr />
+        <section class="section-information-client">
+          <h3>Informations du client</h3>
+          <div class="form-prenom-nom">
+            <div>
+              <label>Prénom</label>
+              <input required id="firstName" type="text" />
+            </div>
+            <div>
+              <label>Nom</label>
+              <input required id="lastName" type="text" />
+            </div>
+          </div>
+          <div class="form-adresse">
+            <label>Addresse</label>
+            <input required id="address" type="text" />
+          </div>
+          <div class="form-adresse-details">
+            <div>
+              <label>Pays</label>
+              <input required id="country" type="text" />
+            </div>
+            <div>
+              <label>Ville</label>
+              <input required id="town" type="text" />
+            </div>
+            <div>
+              <label>Code Postal</label>
+              <input required id="zip" type="number" />
+            </div>
+          </div>
+        </section>
+        <hr />
+        <section>
+          <h3>Informations du produit/service</h3>
+          <div class="form-product">
+            <div>
+              <label>Nom du produit/service</label>
+              <input required id="product" type="text" />
+            </div>
+            <div>
+              <label>Prix</label>
+              <input required id="price" type="number" />
+            </div>
+            <div>
+              <label>Quantité</label>
+              <input required id="quantity" type="number" value="1" />
+            </div>
+            <div>
+              <label>TVA</label>
+              <input required id="tva" type="number" />
+            </div>
+          </div>
+        </section>
+        <hr />
+        <button>Valider</button>
+      </form>
+    </div>
+
+    <div id="hiddenDiv" style="visibility: hidden">
+      <div id="aspect-ratio-container"></div>
+      <div id="div-button-print-reload">
+        <button id="print"></button>
+        <button id="reload">Créer un nouveau document</button>
+      </div>
+    </div>
+
+    <div id="div-show-invoice-estimate">
+      <button id="stored-invoices">Afficher les factures</button>
+      <button id="stored-estimates">Afficher les devis</button>
+    </div>
+
+    <div id="stored-data"></div>
+
+    <footer>
+      <p>&copy; 2023 Delhaye Eliott</p>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
