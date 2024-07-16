@@ -1,12 +1,10 @@
-import { HasHtmlFormat } from "../interfaces/HasHtmlFormat.js";
-import { HasPrint } from "../interfaces/HasPrint.js";
-import { HasRender } from "../interfaces/HasRender.js";
-import { Datas } from "./Data.js";
-import { Display } from "./Display.js";
-import { Print } from "./Print.js";
-
-
-
+import { HasHtmlFormat } from "../interfaces/HasHtmlFormat";
+import { HasPrint } from "../interfaces/HasPrint";
+import { HasRender } from "../interfaces/HasRender";
+import { bind } from "../decorators/Bind";
+import { Datas } from "./Data";
+import { Display } from "./Display";
+import { Print } from "./Print";
 
 export class FormInput {
   form: HTMLFormElement;
@@ -67,12 +65,12 @@ export class FormInput {
     this.printListener();
     this.reloadListener();
     this.getStoredDocsListener();
-
   }
 
   // Listener
+  @bind // Permet de ne pas perdre le contexte de la méthode
   private submitFormListener() {
-    this.form.addEventListener("submit", this.handleFormSubmit.bind(this));
+    this.form.addEventListener("submit", this.handleFormSubmit); // Grâce au décorateur bind il n'est pas nécessaire de bind la méthode
   }
   private printListener() {
     this.btnPrint.addEventListener("click", () => {
@@ -88,13 +86,13 @@ export class FormInput {
     });
   }
   private getStoredDocsListener(): void {
-    this.btnStoredInvoices.addEventListener(
-      "click",
-      this.getItems.bind(this, "invoice")
+    // Dans cet exemple, les fonctions fléchées () => this.getItems("invoice") et () => this.getItems("estimate") conservent le contexte de this sans avoir besoin d'utiliser bind().
+    // Cela fonctionne parce que les fonctions fléchées n'ont pas leur propre contexte this, elles le prennent de l'enclos englobant.
+    this.btnStoredInvoices.addEventListener("click", () =>
+      this.getItems("invoice")
     );
-    this.btnStoredEstimates.addEventListener(
-      "click",
-      this.getItems.bind(this, "estimate")
+    this.btnStoredEstimates.addEventListener("click", () =>
+      this.getItems("estimate")
     );
   }
 
@@ -131,10 +129,11 @@ export class FormInput {
   }
 
   // Handle Form
+  @bind
   private handleFormSubmit(e: Event) {
     e.preventDefault();
 
-    this.hideListDocuments()
+    this.hideListDocuments();
 
     const inputs = this.inputDatas(); // Array ou Undefined
 
@@ -162,10 +161,10 @@ export class FormInput {
       template.render(docData, type);
     }
   }
-  private hideListDocuments(){
-    this.btnStoredInvoices.setAttribute("style","visibility: hidden")
-    this.btnStoredEstimates.setAttribute("style","visibility: hidden")
-    this.storedDataDiv.setAttribute("style","visibility: hidden")
+  private hideListDocuments() {
+    this.btnStoredInvoices.setAttribute("style", "visibility: hidden");
+    this.btnStoredEstimates.setAttribute("style", "visibility: hidden");
+    this.storedDataDiv.setAttribute("style", "visibility: hidden");
   }
 
   // Tuple

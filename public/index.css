@@ -20,18 +20,22 @@ body {
 
 header {
   display: flex;
-  flex-direction: column;
-  margin: 50px 0px;
-  width: 100%;
-  border-radius: 10px;
-  padding: 10px;
+  align-items: center;
+  margin: 50px 20px 0px;
+  color: #0a275e;
 }
 
-header h1 {
-  font-size: 25px;
-  font-family:'Times New Roman', Times, serif;
-  padding: 10px;
-  text-align: center;
+header img {
+  width: 250px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: -5px;
+}
+
+header img:last-child {
+  width: 50px;
+  margin-left: 10px;
+  object-fit: contain;
 }
 
 header h2 {
