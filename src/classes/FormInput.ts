@@ -162,9 +162,9 @@ export class FormInput {
     }
   }
   private hideListDocuments() {
-    this.btnStoredInvoices.setAttribute("style", "visibility: hidden");
-    this.btnStoredEstimates.setAttribute("style", "visibility: hidden");
-    this.storedDataDiv.setAttribute("style", "visibility: hidden");
+    this.btnStoredInvoices.setAttribute("style", "display: none");
+    this.btnStoredEstimates.setAttribute("style", "display: none");
+    this.storedDataDiv.setAttribute("style", "display: none");
   }
 
   // Tuple

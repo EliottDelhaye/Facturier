@@ -25,7 +25,7 @@ export class Display implements HasRender {
     } else {
       this.btnPrint.innerText = "Imprimer le devis";
     }
-    this.hiddenDiv.setAttribute("style", "visibility: visible;");
+    this.hiddenDiv.setAttribute("style", "display: contents;");
     this.formContainer.innerHTML = "";
   }
 }
